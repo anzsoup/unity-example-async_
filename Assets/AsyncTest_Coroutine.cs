@@ -15,7 +15,7 @@ public class AsyncTest_Coroutine : MonoBehaviour
 		bool isDone = false;
 
 		// 람다식을 사용하면 변수 스코프를 공유할 수 있는 장점이 있다.
-		// 스레드에서 실행되는 함수는 result와 isDone 변수에 접근할 수 있다.
+		// 스레드 내에서 result와 isDone 변수에 접근할 수 있다.
 		(new Thread(() =>
 		{
 			for (int i = 0; i < count; ++i)
