@@ -1,0 +1,45 @@
+﻿using System.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
+
+public class AsyncTest : MonoBehaviour
+{
+	void Start()
+	{
+		Debug.Log("Run() invoked in Start()");
+		Run(10);
+		Debug.Log("Run() returns");
+	}
+
+	void Update()
+	{
+		Debug.Log("Update()");
+	}
+
+	async void Run(int count)
+	{
+		// 새로 만들어진 태스크 스레드에서 CountAsync()를 실행한다.
+		var task = Task.Run(() => CountAsync(10));
+
+		// 함수를 리턴하고 태스크가 종료될 때까지 기다린다.
+		// 따라서 바로 "Run() returns" 로그가 출력된다.
+		// result 에는 CountAsync() 함수의 리턴값이 저장된다.
+		int result = await task;
+
+		Debug.Log("Result : " + result);
+	}
+
+	int CountAsync(int count)
+	{
+		int result = 0;
+
+		for (int i = 0; i < count; ++i)
+		{
+			Debug.Log(i);
+			result += i;
+			Thread.Sleep(1000);
+		}
+
+		return result;
+	}
+}
