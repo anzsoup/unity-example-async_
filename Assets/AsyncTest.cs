@@ -23,9 +23,10 @@ public class AsyncTest : MonoBehaviour
 
 		// 함수를 리턴하고 태스크가 종료될 때까지 기다린다.
 		// 따라서 바로 "Run() returns" 로그가 출력된다.
-		// result 에는 CountAsync() 함수의 리턴값이 저장된다.
+		// 태스크가 끝나면 result 에는 CountAsync() 함수의 리턴값이 저장된다.
 		int result = await task;
 
+		// 태스크가 끝나면 await 바로 다음 줄로 돌아와서 나머지가 실행되고 함수가 종료된다.
 		Debug.Log("Result : " + result);
 	}
 
